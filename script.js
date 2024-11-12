@@ -3,36 +3,44 @@ function main(){
     let cChoice = 0;
     while (uChoice == cChoice){
         uChoice = userTurn();
-        cChoice = CPUTurn();
-        if (uChoice == cChoice){
-            alert("We've both chosen the same move! We must now DANCE.");
-            alert("and by DANCE, I mean go again!");
-        }
+        cChoice = cpuTurn();
+        if (uChoice == cChoice) alert("Erm, what the sigma? We both did " + uChoice + "??!?1/1//1/");
     }
     findWinner(uChoice, cChoice);
+    let again = confirm("Wanna play 'gain?");
+    if (again == true) main();
 }
 
-function userTurn(move){
-    switch (move){
-        case 1:
-            alert("You've selected rock.");
-            return "rock";
-        case 2:
-            alert("You've selected paper.");
-            return "paper";
-        case 3:
-            alert("You've selected scissors.");
-            return "scissors";
-        default:
-            alert("It's your turn. Please, select a move!");
-            break;
+function userTurn(){
+    let choice = prompt("Enter r, p or s");
+    if (choice != "r" && choice != "p" && choice != "s"){
+        alert("Invalid input, please select r p or s.")
+        return userTurn();
     }
+    else return choice;
 }
 
-function CPUTurn(){
-    alert("ELLAUR AGAURN.");
+function cpuTurn(){
+    let choice = Math.floor(Math.random()*2);
+    if (choice == 0) return "r";
+    else if (choice == 1) return "p";
+    else return "s";
 }
 
 function findWinner(u, c){
-    alert("ANRGY VILLAGER " + u + " NUMBA NIEN, " + c);
+    // let winner = "You";
+    // alert("You chose " + u + ", while I chose " + c + ". Woah, " + winner + " won!");
+    if (u == "r"){
+        if (c == "s") winner = "you";
+        else winner = "I";
+    }
+    else if (u == "s"){
+        if (c == "p") winner = "you";
+        else winner = "I";
+    }
+    else {
+        if (c == "r") winner = "you";
+        else winner = "I";
+    }
+    alert("You chose " + u + " while I chose " + c + ", " + winner + " won!")
 }
