@@ -28,8 +28,6 @@ function cpuTurn(){
 }
 
 function findWinner(u, c){
-    // let winner = "You";
-    // alert("You chose " + u + ", while I chose " + c + ". Woah, " + winner + " won!");
     if (u == "r"){
         if (c == "s") winner = "you";
         else winner = "I";
