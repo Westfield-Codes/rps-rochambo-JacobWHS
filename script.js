@@ -1,3 +1,5 @@
+const moves = ["r", "p", "s"];
+
 function main(){
     let uChoice = 0;
     let cChoice = 0;
@@ -7,13 +9,14 @@ function main(){
         if (uChoice == cChoice) alert("Erm, what the sigma? We both did " + uChoice + "??!?1/1//1/");
     }
     findWinner(uChoice, cChoice);
+    alert("I chose " + cChoice + ", so " + winner + " won!")
     let again = confirm("Wanna play 'gain?");
     if (again == true) main();
 }
 
 function userTurn(){
     let choice = prompt("Enter r, p or s");
-    if (choice != "r" && choice != "p" && choice != "s"){
+    if (!moves.includes(choice)){
         alert("Invalid input, please select r p or s.")
         return userTurn();
     }
@@ -22,23 +25,22 @@ function userTurn(){
 
 function cpuTurn(){
     let choice = Math.floor(Math.random()*2);
-    if (choice == 0) return "r";
-    else if (choice == 1) return "p";
-    else return "s";
+    alert(moves[choice] + "!")
+    return moves[choice];
 }
 
 function findWinner(u, c){
-    if (u == "r"){
-        if (c == "s") winner = "you";
-        else winner = "I";
+    //let match = "";
+    let wA = [
+        ["r", "p", "I"], ["r", "s", "you"],
+        ["p", "s", "I"], ["p", "r", "you"],
+        ["s", "r", "I"], ["s", "p", "you"]];
+    turns = u + c;
+    for (let x = 0; x < wA.length; x++){
+        match = wA[x][0] + [x][1];
+        if (match == turns){ 
+            winner = wA[x][2];
+            return winner;
+            }            
     }
-    else if (u == "s"){
-        if (c == "p") winner = "you";
-        else winner = "I";
-    }
-    else {
-        if (c == "r") winner = "you";
-        else winner = "I";
-    }
-    alert("You chose " + u + " while I chose " + c + ", " + winner + " won!")
 }
