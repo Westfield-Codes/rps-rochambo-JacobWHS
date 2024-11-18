@@ -24,7 +24,7 @@ function userTurn(){
 }
 
 function cpuTurn(){
-    let choice = Math.floor(Math.random()*2);
+    let choice = Math.floor(Math.random()*3);
     alert(moves[choice] + "!")
     return moves[choice];
 }
@@ -37,7 +37,7 @@ function findWinner(u, c){
         ["s", "r", "I"], ["s", "p", "you"]];
     turns = u + c;
     for (let x = 0; x < wA.length; x++){
-        match = wA[x][0] + [x][1];
+        match = wA[x][0] + wA[x][1];
         if (match == turns){ 
             winner = wA[x][2];
             return winner;
