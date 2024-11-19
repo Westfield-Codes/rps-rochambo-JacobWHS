@@ -5,17 +5,10 @@ var score = [0, 0];
 
 function main(){
     let rounds = parseInt(setRounds());
-    let round = parseInt(0);
-    while (round <= rounds){ 
-        if (!round <= rounds){
-            alert("no");
-        }
-        round++;
-        alert("Round: " + round + " Rounds: " + rounds)
-        if (round == 1) alert("ROUND ONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    for (let round = 1; round <= rounds; round++){ 
+        alert("ROUND " + round);
         let winner = rpsRound();
         score[winner]++;
-        alert(winner);
     }
     alert("It's " + score[0] + " to " + score[1] + "!");
     if (score[0] > score[1]) alert("You win!");
@@ -39,14 +32,11 @@ function rpsRound(){
     while (uChoice == cChoice){
         uChoice = userTurn();
         cChoice = cpuTurn();
-        if (uChoice == cChoice) alert("Erm, what the sigma? We both did " + uChoice + "??!?1/1//1/");
+        alert("You did " + movesFormatted[moves.indexOf(uChoice)] + "! So I say, " +  movesFormatted[moves.indexOf(cChoice)] + "!");
+        if (uChoice == cChoice) alert("We both did " + movesFormatted[moves.indexOf(uChoice)] + "! Let's try that again.");
     }
     let winner = findWinner(uChoice, cChoice);
     let win = players.indexOf(winner);
-    // alert("uChoice: " + uChoice);
-    // alert("cChoice: " + cChoice);
-    // alert("Winner: " + winner);
-    // alert("Win: " + win);
     return win;
 }
 
@@ -61,16 +51,16 @@ function userTurn(){
 
 function cpuTurn(){
     let choice = Math.floor(Math.random()*3);
-    alert(movesFormatted[choice] + "!")
+    //alert(movesFormatted[choice] + "!");
     return moves[choice];
 }
 
 function findWinner(u, c){
     //let match = "";
     let wA = [
-        ["r", "p", "I"], ["r", "s", "you"],
-        ["p", "s", "I"], ["p", "r", "you"],
-        ["s", "r", "I"], ["s", "p", "you"]];
+        ["r", "p", "I"], ["r", "s", "You"],
+        ["p", "s", "I"], ["p", "r", "You"],
+        ["s", "r", "I"], ["s", "p", "You"]];
     turns = u + c;
     for (let x = 0; x < wA.length; x++){
         match = wA[x][0] + wA[x][1];
